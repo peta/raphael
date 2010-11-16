@@ -3510,14 +3510,15 @@
     R.ae = animationElements;
  
     // Set
-    var Set = function (items) {
-        this.items = [];
+    var Set = function () {
+		var tItems = this.items = [];
         this[length] = 0;
         this.type = "set";
-        if (items) {
-            for (var i = 0, ii = items[length]; i < ii; i++) {
-                if (items[i] && (items[i].constructor == Element || items[i].constructor == Set)) {
-                    this[this.items[length]] = this.items[this.items[length]] = items[i];
+
+        if (arguments.length) {
+            for (var i=0, ii=arguments[length], j=arguments[0]; i < ii; i++, j=arguments[i]) {
+                if (j && (j.constructor === Element || j.constructor === Set)) {
+                    this[tItems[length]] = tItems[tItems[length]] = j;
                     this[length]++;
                 }
             }
